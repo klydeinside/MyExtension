@@ -1,0 +1,83 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+    "name": "Turk Guru",
+    "version": "2.0.28",
+    "description": "Increase your mturk earnings by automating HIT acceptance based on your preferences and using Machine Learning.",
+    "manifest_version": 2,
+    "permissions": [
+        "declarativeContent",
+        "storage",
+        "contextMenus",
+        "tabs",
+        "notifications",
+        "webRequest",
+        "unlimitedStorage",
+        "https://worker.mturk.com/*"
+    ],
+    "optional_permissions": [],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://worker.mturk.com/*"
+            ],
+            "run_at": "document_end",
+            "css": [
+                "styles/material-components-web.min.css",
+                "styles/icon.css",
+                "styles/foreground.css",
+                "styles/enjoyhint.css"
+            ],
+            "js": [
+                "libs/jquery.js",
+                "libs/jquery.scrollTo.js",
+                "libs/kinetic.js",
+                "libs/enjoyhint.js",
+                "foreground.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "styles/*.css",
+        "audios/ding.wav",
+        "html/*.html",
+        "libs/*.js"
+    ],
+    "page_action": {
+        "default_popup": "html/popup.html",
+        "default_icon": {
+            "16": "images/guru_16.png",
+            "32": "images/guru_32.png",
+            "48": "images/guru_48.png",
+            "64": "images/guru_64.png",
+            "128": "images/guru_128.png"
+        }
+    },
+    "background": {
+        "page": "html/background.html",
+        "persistent": true
+    },
+    "icons": {
+        "16": "images/guru_16.png",
+        "32": "images/guru_32.png",
+        "48": "images/guru_48.png",
+        "64": "images/guru_64.png",
+        "128": "images/guru_128.png"
+    },
+    "commands": {
+        "re-login": {
+            "suggested_key": {
+                "default": "Alt+L"
+            },
+            "description": "Login Again"
+        },
+        "_execute_page_action": {
+            "suggested_key": {
+                "default": "Alt+P"
+            },
+            "description": "Toggle Pop-up"
+        }
+    },
+    "content_security_policy": "script-src 'self' https://*.firebaseio.com; object-src 'self'",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuTTNxjXKkoy9zrVn62JpZjX1SW0FNAKdUEs6oIi11mulmV+F1Ag0MQgGJH3shJRmGG1H3jrhn3VOywagpF/aikXwnDtkKK4ToufuvWwxr1IouTIcpq5sdbDLNKgF3+hHzMMbGJ/6g8w0HTu1DqdmQuM2l96lE6XFbxJ6u3/1q64Azd0n/v5STzeqYWgTK3/hCp7RWr4V9GvyMcUlzG+DrS+UGaMo+1Elx7CChvAsRvMcCppJvy+4kjjP6cWT+Wa/6dc/AUzcDO57buqW0E4vAklKX7ncA92FFvyCcmxg4IyjP3UPMi6ksUYLviEFWk7r58rrxyur60YP2ig9k2cMVwIDAQAB"
+}
